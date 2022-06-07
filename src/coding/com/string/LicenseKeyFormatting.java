@@ -9,12 +9,12 @@ public class LicenseKeyFormatting {
         // CASE1.
         // Input: s = "8F3Z-2e-9-w", k = 4
         // Output: "8F3Z-2E9W“
-        solve("8F3Z-2e-9-w", 4);
+        solve2("8F3Z-2e-9-w", 4);
 
         // CASE2.
         // Input: s = " 8-5g-3-J ", k = 2
         // Output: "8-5G-3J"
-        solve("8-5g-3-J", 2);
+        solve2("8-5g-3-J", 2);
     }
 
     public static String solve(String s, int k) {
@@ -48,5 +48,25 @@ public class LicenseKeyFormatting {
 
         System.out.println(rslt);
         return rslt;
+    }
+
+    public static String solve2(String s, int k) {
+
+        // 1. - 없애기
+        s = s.replaceAll("-", "");
+
+        // 2. 대문자.
+        s = s.toUpperCase(Locale.ROOT);
+
+        StringBuilder sb = new StringBuilder(s);
+
+        // 3. '-' 삽입
+        int len = s.length();
+        for(int i = k; i < len; i = i + k) {
+            sb.insert(len - i, "-");
+        }
+
+        System.out.println(sb);
+        return sb.toString();
     }
 }
